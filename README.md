@@ -3,9 +3,12 @@
 Internal IT operations desktop application for managing Park Street desk
 infrastructure and departmental IT stock.
 
-> Status: **MVP feature-complete.** Foundation, desk and stock management,
-> integration & QA, and the PySide6 GUI are all in place. Remaining:
-> packaging/deployment docs (Phase 6) and brand assets (logo + font).
+> Status: **MVP complete.** Foundation, desk and stock management,
+> integration & QA, the PySide6 GUI, and packaging/deployment are all in
+> place. See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for installation,
+> configuration, backup/restore, updates, logging and troubleshooting.
+> Remaining polish: brand assets (logo + font) and optional pytest-qt UI
+> interaction tests.
 
 ## Architecture
 
