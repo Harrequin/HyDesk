@@ -1,0 +1,32 @@
+[project]
+name = "hydesk"
+version = "0.1.0"
+description = "HyDesk - Internal IT operations desktop application for Park Street desk infrastructure and departmental IT stock."
+requires-python = ">=3.11"
+dependencies = [
+    "PySide6>=6.7",
+    "SQLAlchemy>=2.0",
+    "alembic>=1.13",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-qt>=4.4",
+    "pyinstaller>=6.0",
+]
+
+[project.scripts]
+hydesk = "hydesk.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hydesk"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"

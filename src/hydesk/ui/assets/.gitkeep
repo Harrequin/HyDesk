@@ -1,0 +1,2 @@
+# Placeholder for brand assets (logo, font files) to be added post-MVP.
+# Drop *.ttf / *.otf here and theme.apply_brand_font will pick them up.

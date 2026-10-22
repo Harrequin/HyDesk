@@ -1,0 +1,13 @@
+# Normalise line endings so the repo is consistent across machines.
+# Text files are stored with LF in the repo; Git checks them out with the
+# platform's native endings. This prevents whole-tree churn when moving
+# between environments.
+* text=auto eol=lf
+
+# Binary assets must never be line-ending converted.
+*.ttf binary
+*.otf binary
+*.png binary
+*.jpg binary
+*.ico binary
+*.db binary

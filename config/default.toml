@@ -1,0 +1,23 @@
+# HyDesk shipped default configuration.
+#
+# These are safe defaults bundled with the application. A deployment may
+# override any of them via a user config file (see config.py for the
+# resolution order). The database and log locations resolve to a per-user
+# data directory outside the installation folder.
+
+[database]
+# Filename of the SQLite database. The directory is the application data
+# directory (see [paths]); leave `path` empty to use that default location,
+# or set an absolute path to override entirely.
+filename = "hydesk.db"
+path = ""
+
+[logging]
+level = "INFO"
+filename = "hydesk.log"
+max_bytes = 1048576   # 1 MiB per log file before rotation
+backup_count = 5
+
+[ui]
+default_page_size = 50
+page_size_options = [25, 50, 100, 200]
