@@ -49,7 +49,20 @@ SPACE_L = 20
 # used regardless of what is installed on the machine. This family name is
 # the fallback used only if the bundled file cannot be loaded.
 DEFAULT_FONT_FAMILY = "Heebo"
-BASE_FONT_POINT_SIZE = 10
+
+# Global font scale. All sizes below (the base application point size and the
+# explicit pixel sizes in the stylesheet) are derived from this, so the whole
+# app scales from one place. 1.35 = 35% larger than the original baseline.
+FONT_SCALE = 1.35
+_BASE_POINT_SIZE = 10
+BASE_FONT_POINT_SIZE = _BASE_POINT_SIZE * FONT_SCALE  # 13.5pt (Qt accepts float)
+
+# Named text sizes (pixels), scaled from their original design values so the
+# relationships between title / value / body stay consistent.
+_CARD_TITLE_PX = round(11 * FONT_SCALE)   # 15px
+_CARD_VALUE_PX = round(26 * FONT_SCALE)   # 35px
+_PAGE_TITLE_PX = round(20 * FONT_SCALE)   # 27px
+_NAV_ITEM_PX = round(13 * FONT_SCALE)     # 18px
 
 
 def apply_brand_font(app: QApplication) -> str:
@@ -77,7 +90,9 @@ def apply_brand_font(app: QApplication) -> str:
                 logger.info("Loaded brand font: %s", family)
                 break
 
-    app.setFont(QFont(family, BASE_FONT_POINT_SIZE))
+    font = QFont(family)
+    font.setPointSizeF(BASE_FONT_POINT_SIZE)  # float size for exact scaling
+    app.setFont(font)
     return family
 
 
@@ -95,14 +110,14 @@ def stylesheet() -> str:
     }}
     QLabel#CardTitle {{
         color: {COLOR_TEXT_MUTED};
-        font-size: 11px;
+        font-size: {_CARD_TITLE_PX}px;
     }}
     QLabel#CardValue {{
-        font-size: 26px;
+        font-size: {_CARD_VALUE_PX}px;
         font-weight: 600;
     }}
     QLabel#PageTitle {{
-        font-size: 20px;
+        font-size: {_PAGE_TITLE_PX}px;
         font-weight: 600;
     }}
     /* Left navigation */
@@ -112,6 +127,8 @@ def stylesheet() -> str:
         border: none;
         outline: none;
         padding-top: {SPACE_M}px;
+        font-size: {_NAV_ITEM_PX}px;
+        font-weight: 600;
     }}
     QListWidget#NavList::item {{
         padding: {SPACE_M}px {SPACE_L}px;
