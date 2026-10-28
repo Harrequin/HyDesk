@@ -19,26 +19,36 @@ logger = logging.getLogger(__name__)
 ASSETS_DIR = Path(__file__).resolve().parent / "assets"
 
 # --- palette --------------------------------------------------------------
-# Neutral, professional surface colours. Status colours are defined on the
-# domain enums (DeskStatus.colour) and reused by the status badge so there
-# is a single source of truth for them.
+# Brand palette. The content area stays light for readability (white cards
+# and table rows, dark text); the brand colours carry the chrome (nav and
+# accent). Status colours are defined on the domain enums
+# (DeskStatus.colour) and are intentionally NOT rebranded -- they are
+# semantic (green = active, red = down, etc.) and mandated by the spec.
+#
+# Brand colours:
+#   #1A202B  dark slate   - navigation background, primary text
+#   #3B557A  navy         - accent (primary buttons, selection, nav highlight)
+#   #D9D6CC  stone        - warm neutral for borders / table header strip
+# All text-on-colour pairings below meet WCAG AA contrast (>= 4.5:1).
 COLOR_BG = "#F5F6F8"
 COLOR_SURFACE = "#FFFFFF"
-COLOR_BORDER = "#D5D9DF"
-COLOR_TEXT = "#1F2328"
+COLOR_BORDER = "#D9D6CC"
+COLOR_TEXT = "#1A202B"
 COLOR_TEXT_MUTED = "#5A6472"
-COLOR_NAV_BG = "#1F2730"
-COLOR_NAV_TEXT = "#E8EBEF"
-COLOR_NAV_SELECTED = "#324050"
-COLOR_ACCENT = "#1565C0"
+COLOR_NAV_BG = "#1A202B"
+COLOR_NAV_TEXT = "#FFFFFF"
+COLOR_NAV_SELECTED = "#3B557A"
+COLOR_ACCENT = "#3B557A"
 
 # --- spacing scale --------------------------------------------------------
 SPACE_S = 6
 SPACE_M = 12
 SPACE_L = 20
 
-# Fallback font family used until a brand font is supplied.
-DEFAULT_FONT_FAMILY = "Segoe UI"
+# Brand font. The Heebo .ttf in ui/assets is loaded by apply_brand_font and
+# used regardless of what is installed on the machine. This family name is
+# the fallback used only if the bundled file cannot be loaded.
+DEFAULT_FONT_FAMILY = "Heebo"
 BASE_FONT_POINT_SIZE = 10
 
 
@@ -128,7 +138,7 @@ def stylesheet() -> str:
         background: {COLOR_SURFACE};
         border: 1px solid {COLOR_BORDER};
         gridline-color: {COLOR_BORDER};
-        selection-background-color: #D6E4F5;
+        selection-background-color: #D6DEEC;
         selection-color: {COLOR_TEXT};
     }}
     QHeaderView::section {{
