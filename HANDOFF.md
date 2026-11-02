@@ -98,5 +98,7 @@ f6895c9  Migration guide (off OneDrive)
 88207bf  Initial commit: backend, GUI, packaging
 ```
 
-No remote is configured yet. Adding a backup remote (GitHub / Azure DevOps /
-network share) is recommended so the code is not only on one machine.
+Remote `origin` is configured: `https://github.com/Harrequin/HyDesk.git`
+(private repo under the Harrequin account). `main` tracks `origin/main`, so a
+plain `git push` after each commit keeps GitHub current. The code is no longer
+only on one machine.
